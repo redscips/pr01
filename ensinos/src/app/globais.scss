@@ -8,6 +8,10 @@
 }
 
 body {
+    // fonte
     font-family: RetornaValorMapa($fontes, "robotos");
     font-size: RetornaValorMapa($tamanhos, "titulo");
+    // cor
+    color: RetornaValorMapa($cores, "branco");
+    background-color: RetornaValorMapa($cores, "cinza-escuro");
 }
