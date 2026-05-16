@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Playwrite_AU_NSW_Guides } from "next/font/google";
 import "./globais.scss";
 
 const roboto = Roboto({
@@ -7,6 +7,11 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"]
 });
+
+const playwriteAU = Playwrite_AU_NSW_Guides({
+  variable: "--font-playwrite-au-nsw-guides",
+  weight: ["400"]
+})
 
 export const metadata: Metadata = {
   title: "Ensinos"
@@ -21,7 +26,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
     >
-      <body className={`${roboto.variable}`}>{children}</body>
+      <body className={`${roboto.variable} ${playwriteAU.variable}`}>{children}</body>
     </html>
   );
 }

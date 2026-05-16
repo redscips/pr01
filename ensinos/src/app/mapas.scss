@@ -1,6 +1,7 @@
 // mapas: fontes
 $fontes: (
-  roboto: (var(--font-roboto), sans-serif)
+  roboto: (var(--font-roboto), sans-serif),
+  playwrite: (var(--font-playwrite-au-nsw-guides), cursive)
 );
 
 //cores
@@ -17,3 +18,17 @@ $tamanhos: (
   medio: 1.5rem,
   titulo: 2rem,
 );
+
+//funcoes: retorna um valor de um mapa
+@function RetornaMapa($mapa, $nome) {
+    //verifica o nome do mapa
+    @if $mapa == "fontes" {
+        @return map-get($fontes, $nome);
+    } @else if $mapa == "cores" {
+        @return map-get($cores, $nome);
+    } @else if $mapa == "tamanhos" {
+        @return map-get($tamanhos, $nome);
+    } @else {
+        @return null;
+    }
+}
