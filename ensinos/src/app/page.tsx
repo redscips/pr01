@@ -1,9 +1,9 @@
-import * as E from "./inicial"
+import * as E from "./estilos_globais"
 
 export default function Inicial() {
   return (
     <div>
-      <E.default>titulo</E.default>
+      <E.Titulo>titulo</E.Titulo>
     </div>
   );
 }
