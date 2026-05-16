@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto, Playwrite_AU_NSW_Guides } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globais.scss";
 
 const roboto = Roboto({
