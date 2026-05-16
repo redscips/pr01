@@ -1,4 +1,3 @@
-@use "mapas" as *;
 @use "tailwindcss";
 
 * {
@@ -9,9 +8,9 @@
 
 body {
     // fonte
-    font-family: RetornaValorMapa($fontes, "robotos");
-    font-size: RetornaValorMapa($tamanhos, "titulo");
+    font-family: var(--fontes-roboto);
+    font-size: var(--tamanhos-titulo);
     // cor
-    color: RetornaValorMapa($cores, "branco");
-    background-color: RetornaValorMapa($cores, "cinza-escuro");
+    color: var(--cores-cinza_claro);
+    background-color: var(--cores-cinza_escuro);
 }
