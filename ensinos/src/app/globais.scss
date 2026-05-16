@@ -1,0 +1,13 @@
+@use "mapas" as *;
+@import "tailwindcss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: map-get($fontes, roboto);
+    font-size: map-get($tamanhos, pequeno);
+}
