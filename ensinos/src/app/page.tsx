@@ -1,7 +1,9 @@
+import * as E from "./inicial"
+
 export default function Inicial() {
   return (
     <div>
-      <h1>titulo</h1>
+      <E.default>titulo</E.default>
     </div>
   );
 }
