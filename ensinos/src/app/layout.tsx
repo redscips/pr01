@@ -8,11 +8,6 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700"]
 });
 
-const playwriteAU = Playwrite_AU_NSW_Guides({
-  variable: "--font-playwrite-au-nsw-guides",
-  weight: ["400"]
-})
-
 export const metadata: Metadata = {
   title: "Ensinos"
 };
@@ -26,7 +21,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
     >
-      <body className={`${roboto.variable} ${playwriteAU.variable}`}>{children}</body>
+      <body className={`${roboto.variable}`}>{children}</body>
     </html>
   );
 }

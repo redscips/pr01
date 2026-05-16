@@ -8,6 +8,6 @@
 }
 
 body {
-    font-family: RetornaMapa("fontes", "roboto");
-    font-size: RetornaMapa("tamanhos", "pequeno");
+    font-family: RetornaValorMapa($fontes, "robotos");
+    font-size: RetornaValorMapa($tamanhos, "titulo");
 }

@@ -1,7 +1,8 @@
+@use "sass:map";
+
 // mapas: fontes
 $fontes: (
-  roboto: (var(--font-roboto), sans-serif),
-  playwrite: (var(--font-playwrite-au-nsw-guides), cursive)
+  roboto: (var(--font-roboto), sans-serif)
 );
 
 //cores
@@ -20,15 +21,12 @@ $tamanhos: (
 );
 
 //funcoes: retorna um valor de um mapa
-@function RetornaMapa($mapa, $nome) {
-    //verifica o nome do mapa
-    @if $mapa == "fontes" {
-        @return map-get($fontes, $nome);
-    } @else if $mapa == "cores" {
-        @return map-get($cores, $nome);
-    } @else if $mapa == "tamanhos" {
-        @return map-get($tamanhos, $nome);
-    } @else {
-        @return null;
+@function RetornaValorMapa($mapa, $nome) {
+    //verifica se a chave existe no mapa
+    @if map.has-key($mapa, $nome) {
+        //retorna o valor da chave
+        @return map.get($mapa, $nome);
     }
+    //---
+    @return null;
 }
