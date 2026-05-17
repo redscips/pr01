@@ -10,4 +10,5 @@ export const EstilosGlobais = createGlobalStyle`
 
 export const Titulo = styled.h1`
     color: ${RetornaValorMapa(cores, 'branco')};
+    text-align: center;
 `
