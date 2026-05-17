@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { EstilosGlobais } from "./estilos_globais";
+import * as E from "./estilos_globais";
 import "./globais.scss";
 
 const roboto = Roboto({
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
     >
-      <EstilosGlobais />
+      <E.default />
       <body className={`${roboto.variable}`}>{children}</body>
     </html>
   );

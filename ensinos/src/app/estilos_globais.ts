@@ -2,10 +2,15 @@
 import { createGlobalStyle, styled } from 'styled-components';
 import { InjetaMapasCSS, RetornaValorMapa, cores } from './mapas';
 
-export const EstilosGlobais = createGlobalStyle`
+export default createGlobalStyle`
     :root {
         ${InjetaMapasCSS()}
     }
+`
+
+export const Container = styled.div`
+    display: flex;
+    justify-content: space-evenly;
 `
 
 export const Titulo = styled.h1`
