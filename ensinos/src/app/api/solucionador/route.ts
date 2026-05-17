@@ -1,0 +1,62 @@
+import { NextResponse } from 'next/server';
+import { evaluate, simplify } from 'mathjs';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+//instancia do Gemini
+const geradorIA = new GoogleGenerativeAI(process.env.GEMINI_API_CHAVE || '');
+
+export async function POST(requisicao: Request) {
+  try {
+    //pega a equacao enviada pelo cliente (ponta-frontal)
+    const { equacao, simplificar } = await requisicao.json();
+    //valida se a equacao eh valida
+    if (!equacao) return NextResponse.json({ erro: 'Digite uma equação válida.' }, { status: 400 });
+    //variaveis
+    let equacaoParaResolver = '';
+    let dicaParaIA = '';
+    //1) resolve a equacao com 'mathjs'
+    try {
+      //valida simplificar expressao
+      if (simplificar)
+        equacaoParaResolver = simplify(equacao).toString();
+      else
+        equacaoParaResolver = equacao;
+      //tentativa de calculo direto p/ garantir a precisao
+      const resultadoCalculado = evaluate(equacaoParaResolver);
+      //-----
+      dicaParaIA = `O resultado exato é: ${resultadoCalculado}. Use isso na sua explicação.`;
+    } catch (erro) {
+      equacaoParaResolver = equacao;
+      dicaParaIA = "Esta é uma equação algébrica que exige isolar a incógnita. Resolva passo a passo com precisão.";
+    }
+    //2) ensinando passo a passo: a didatica da IA gemini
+    const modelo = geradorIA.getGenerativeModel({ model: "gemini-1.5-flash" });
+    //prompt
+    const comando = `
+      Você é um professor de matemática experiente. 
+      Tarefa: Resolver a equação "${equacaoParaResolver}".
+      Contexto importante: ${dicaParaIA}
+      
+      Regras de resposta:
+      1. Divida a explicação em passos lógicos e curtos.
+      2. Use o caractere "|" estritamente para separar cada passo.
+      3. Se for uma equação de 2º grau, aplique a fórmula de Bhaskara.
+      4. Não adicione saudações, apenas os passos da resolução.
+    `;
+    //executa pergunta a IA
+    const resultadoIA = await modelo.generateContent(comando);
+    const respostaTexto = resultadoIA.response.text();
+    //transforma a resposta em uma lista (array), pois pedimos a IA p/ separar os passos com '|'
+    const listaDePassos = respostaTexto
+      .split('|')
+      .map(passo => passo.trim())
+      .filter(passo => passo.length > 2);
+    //retorna o passo a passo
+    return NextResponse.json({ passos: listaDePassos });
+  } catch (erro: any) {
+    return NextResponse.json(
+      { erro: 'Infelizmente não conseguimos processar esse cálculo agora.' }, 
+      { status: 500 }
+    );
+  }
+}
