@@ -29,8 +29,8 @@ export async function POST(requisicao: Request) {
       equacaoParaResolver = equacao;
       dicaParaIA = "Esta é uma equação algébrica que exige isolar a incógnita. Resolva passo a passo com precisão.";
     }
-    //2) ensinando passo a passo: a didatica da IA gemini
-    const modelo = geradorIA.getGenerativeModel({ model: "gemini-1.5-flash" });
+    //2) ensinando passo a passo: a didatica da IA geminiks
+    const modelo = geradorIA.getGenerativeModel({ model: "gemini-3-flash-preview" });
     //prompt
     const comando = `
       Você é um professor de matemática experiente. 
@@ -54,6 +54,8 @@ export async function POST(requisicao: Request) {
     //retorna o passo a passo
     return NextResponse.json({ passos: listaDePassos });
   } catch (erro: any) {
+    // ESSENCIAL: Imprima o erro real no seu terminal para sabermos o motivo exato
+    console.error("ERRO DETALHADO NO SERVIDOR:", erro);
     return NextResponse.json(
       { erro: 'Infelizmente não conseguimos processar esse cálculo agora.' }, 
       { status: 500 }

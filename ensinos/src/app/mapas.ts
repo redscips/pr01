@@ -3,20 +3,25 @@ export const fontes = {
   roboto: 'var(--font-roboto), sans-serif',
 }
 
-//mapa de cores
 export const cores = {
   branco: '#ffffff',
   preto: '#000000',
   cinza_claro: '#f5f5f5',
-  cinza_escuro: '#333333',
+  cinza_medio: '#94a3b8', // Adicionado
+  cinza_escuro: '#1e293b', 
+  primaria: '#6366f1',    // Indigo moderno
+  sucesso: '#10b981', 
+  erro: '#ef4444',
 }
 
-//mapa de tamanhos
 export const tamanhos = {
-  pequeno: '1rem',
-  medio: '1.5rem',
-  titulo: '2rem',
+  pequeno: '0.875rem',
+  medio: '1rem',
+  grande: '1.25rem',
+  titulo: '2.5rem',
 }
+
+// ... (suas funções UnificaMapas, InjetaMapasCSS e RetornaValorMapa permanecem as mesmas)
 
 //funcoes
 function UnificaMapas() {

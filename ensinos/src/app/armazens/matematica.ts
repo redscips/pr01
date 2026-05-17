@@ -49,9 +49,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                             false,
                             'matematicaEstado/resetandoProcessamento'
                         );
-                        // Enviando dados para o servidor salvar ou processar
-                        // const dados = await RequisicoesWeb.executaRequisicao<PassosEquacao>('/api/solucionador', 'POST', { equacao });
-                        // Exemplo de uso dentro do resolverEquacao:
+                        // Enviando dados para o servidor salvar ou processar;
                         const dados = await RequisicoesWeb.executaRequisicao<PassosEquacao>(
                             '/api/solucionador', 
                             'POST', 
