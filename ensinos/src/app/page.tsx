@@ -37,12 +37,10 @@ export default function Inicial() {
         {erro && <p style={{ color: 'var(--cores-erro)' }}>{erro}</p>}
       </E.SecaoInput>
 
-      <div style={{ width: '100%' }} className="visu">
+      <div className="visu">
         {passos.passos?.map((passo, index) => (
           <E.CardPasso key={index} className="visu">
-            <h3 style={{ color: 'var(--cores-primaria)', marginBottom: '0.5rem' }}>
-              Passo {index + 1}
-            </h3>
+            <h3>Passo {index + 1}</h3>
             <p>{passo}</p>
           </E.CardPasso>
         ))}
