@@ -34,7 +34,7 @@ export default function Inicial() {
           {estaCarregando ? "Pensando..." : "Resolver Passo a Passo"}
         </E.BotaoAcao>
 
-        {erro && <p style={{ color: 'var(--cores-erro)' }}>{erro}</p>}
+        {erro && <p>{erro}</p>}
       </E.SecaoInput>
 
       <div className="visu">
