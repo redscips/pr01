@@ -7,7 +7,7 @@
         "name": "Iniciar servidor Next.js",
         "runtimeExecutable": "pnpm",
         "runtimeArgs": ["dev"],
-        "cwd": "${workspaceFolder}/ensinos",
+        "cwd": "${workspaceFolder}/ensinos/",
         "skipFiles": ["<node_internals>/**", "node_modules/**"]
     },
     {
@@ -15,7 +15,12 @@
         "request": "launch",
         "name": "Abrir Edge",
         "url": "http://localhost:3000",
-        "webRoot": "${workspaceFolder}/ensinos"
+        "webRoot": "${workspaceFolder}/ensinos/",
+        "sourceMaps": true,
+        "resolveSourceMapLocations": [
+            "${workspaceFolder}/ensinos/**",
+            "!**/node_modules/**"
+        ]
     }
   ],
   "compounds": [
