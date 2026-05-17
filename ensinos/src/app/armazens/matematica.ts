@@ -7,7 +7,7 @@ interface PassosEquacao {
 }
 
 export interface EstadoMatematica {
-  equacao: string;                   //armazena a equacao digitada
+  equacaoDigitada: string;                   //armazena a equacao digitada
   passos: PassosEquacao;
   estaCarregando: boolean;           //indica se a IA esta processando o calculo
   erro: string | null;               //armazena mensagens de erro, caso ocorram
@@ -23,7 +23,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
         //ativa persistencia p/ salvar e recuperar os dados do localStorage
         persist(
             (definir, obter) => ({
-                equacao: '',
+                equacaoDigitada : '',
                 passos: { passosResolucao: [] },
                 estaCarregando: false,
                 erro: null,
@@ -31,7 +31,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                 //atualiza o texto da equacao conforme o usuario digita
                 definirEquacao: (novaEquacao) =>
                     definir(
-                        { equacao: novaEquacao },
+                        { equacaoDigitada: novaEquacao },
                         false,
                         'matematicaEstado/definirEquacao' // nome no devtools
                     ),
@@ -40,9 +40,9 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                 resolverEquacao: async () => {
                     try {
                         //obtem a equacao atual do estado
-                        const { equacao } = obter();
+                        const { equacaoDigitada } = obter();
                         //validacao
-                        if (!equacao.trim()) throw new Error('Por favor, insira uma equação para resolver.');
+                        if (!equacaoDigitada.trim()) throw new Error('Por favor, insira uma equação para resolver.');
                         //reseta campos de processamento e ativa a animacao de carregamento
                         definir(
                             { estaCarregando: true, erro: null, passos: { passosResolucao: [] } },
@@ -50,7 +50,16 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                             'matematicaEstado/resetandoProcessamento'
                         );
                         // Enviando dados para o servidor salvar ou processar
-                        const dados = await RequisicoesWeb.executaRequisicao<PassosEquacao>('/api/resolver', 'POST', { equacao });
+                        // const dados = await RequisicoesWeb.executaRequisicao<PassosEquacao>('/api/solucionador', 'POST', { equacao });
+                        // Exemplo de uso dentro do resolverEquacao:
+                        const dados = await RequisicoesWeb.executaRequisicao<PassosEquacao>(
+                            '/api/solucionador', 
+                            'POST', 
+                            { 
+                                equacao: equacaoDigitada, 
+                                simplificar: false
+                            }
+                        );
                         //salva os passos retornados pela API no nosso estado global
                         definir(
                             { passos: { passosResolucao: dados.passosResolucao }, estaCarregando: false },
@@ -72,7 +81,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                 // Reseta todas as informações do aplicativo para o estado inicial
                 limparArmazenamento: () =>
                     definir({ 
-                            equacao: '', 
+                            equacaoDigitada: '', 
                             passos: { passosResolucao: [] }, 
                             erro: null, 
                             estaCarregando: false 
