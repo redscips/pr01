@@ -14,27 +14,26 @@ export interface LoginEstado {
   deslogar: () => void
 }
 
-// 2. Adicionamos os parênteses extras necessários para os middlewares funcionarem com TypeScript
-export const usaLoginEstado = create<LoginEstado>()(
+export const useLoginEstado = create<LoginEstado>()(
   //ativa o redux devtools p/ usar no navegador
   devtools(
     //ativa persistencia p/ salvar e recuperar os dados do localStorage
     persist(
-      (set) => ({
+      (definir) => ({
         //estado inicial do login
         usuario: { nome: '', senha: '' },
         logado: false,
 
         //acoes
         fazerLogin: (usuario) => 
-          set(
+          definir(
             { usuario: { nome: usuario.nome, senha: usuario.senha }, logado: true }, 
-            false, 
+            false,
             'loginEstado/fazerLogin'   //nome no devtools
           ),
 
         deslogar: () => 
-          set(
+          definir(
             { usuario: { nome: '', senha: '' }, logado: false }, 
             false, 
             'loginEstado/deslogar'   //nome no devtools
