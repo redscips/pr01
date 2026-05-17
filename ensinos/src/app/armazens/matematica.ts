@@ -21,7 +21,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
     //ativa o redux devtools p/ usar no navegador
     devtools(
         //ativa persistencia p/ salvar e recuperar os dados do localStorage
-        persist(
+        //persist(
             (definir, obter) => ({
                 equacaoDigitada : '',
                 passos: { passosResolucao: [] },
@@ -87,10 +87,10 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                         false,
                         'matematicaEstado/limparArmazenamento' /* nome no devtools */
                     ),
-                }),
-            {
-                name: 'matematicaEstado-armazem'    //chave do estado no localStorage
-            }
-        )
+                })//,
+            //{
+                //name: 'matematicaEstado-armazem'    //chave do estado no localStorage
+            //}
+        //)
     )
 );

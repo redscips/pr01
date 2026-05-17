@@ -3,7 +3,6 @@ import { evaluate, simplify } from 'mathjs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 //instancia do Gemini
-debugger;
 const geradorIA = new GoogleGenerativeAI(process.env.GEMINI_API_CHAVE || '');
 
 export async function POST(requisicao: Request) {
@@ -17,16 +16,24 @@ export async function POST(requisicao: Request) {
     let dicaParaIA = '';
     //1) resolve a equacao com 'mathjs'
     try {
-      //valida simplificar expressao
-      if (simplificar)
-        equacaoParaResolver = simplify(equacao).toString();
-      else
-        equacaoParaResolver = equacao;
-      console.log("Equação para resolver:", equacaoParaResolver);
-      //tentativa de calculo direto p/ garantir a precisao
-      const resultadoCalculado = evaluate(equacaoParaResolver);
-      //-----
-      dicaParaIA = `O resultado exato é: ${resultadoCalculado}. Use isso na sua explicação.`;
+        //valida simplificar expressao
+        if (simplificar)
+          equacaoParaResolver = simplify(equacao).toString();
+        else
+          equacaoParaResolver = equacao;
+        //validacao p/ forcar uma simplificacao, pois p/ o mathjs resolver, eh preciso que a expressao esteja igualada a 0
+        if (equacaoParaResolver.includes('=')) {
+          //pega os dois lados da equacao
+          const [ladoEsquerdo, ladoDireito] = equacaoParaResolver.split('=');
+          //cria uma nova expressao que subtrai os dois lados, forcando o mathjs a simplificar e isolar a variavel
+          const expressaoParaResolver = `(${ladoEsquerdo}) - (${ladoDireito})`;
+          //simplifica
+          equacaoParaResolver = simplify(expressaoParaResolver).toString();
+        }
+        //tentativa de calculo direto p/ garantir a precisao
+        //const resultadoCalculado = evaluate(equacaoParaResolver);
+        //-----
+        //dicaParaIA = `O resultado exato é: ${resultadoCalculado}. Use isso na sua explicação.`;
     } catch (erro) {
       equacaoParaResolver = equacao;
       dicaParaIA = "Esta é uma equação algébrica que exige isolar a incógnita. Resolva passo a passo com precisão.";
@@ -37,7 +44,7 @@ export async function POST(requisicao: Request) {
     const comando = `
       Você é um professor de matemática experiente. 
       Tarefa: Resolver a equação "${equacaoParaResolver}".
-      Contexto importante: ${dicaParaIA}
+      ${dicaParaIA ? `Contexto importante: ${dicaParaIA}` : ''}
       
       Regras de resposta:
       1. Divida a explicação em passos lógicos e curtos.
