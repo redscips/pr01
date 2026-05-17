@@ -3,6 +3,7 @@ import { evaluate, simplify } from 'mathjs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 //instancia do Gemini
+debugger;
 const geradorIA = new GoogleGenerativeAI(process.env.GEMINI_API_CHAVE || '');
 
 export async function POST(requisicao: Request) {
@@ -21,6 +22,7 @@ export async function POST(requisicao: Request) {
         equacaoParaResolver = simplify(equacao).toString();
       else
         equacaoParaResolver = equacao;
+      console.log("Equação para resolver:", equacaoParaResolver);
       //tentativa de calculo direto p/ garantir a precisao
       const resultadoCalculado = evaluate(equacaoParaResolver);
       //-----
