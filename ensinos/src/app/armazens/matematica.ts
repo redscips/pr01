@@ -3,7 +3,7 @@ import { devtools, persist } from 'zustand/middleware';
 import { RequisicoesWeb } from '../negocio/RequisicoesWeb';
 
 interface PassosEquacao {
-    passosResolucao: string[];         //lista com as explicacoes passo a passo da IA
+    passos: string[];         //lista com as explicacoes passo a passo da IA
 }
 
 export interface EstadoMatematica {
@@ -24,7 +24,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
         //persist(
             (definir, obter) => ({
                 equacaoDigitada : '',
-                passos: { passosResolucao: [] },
+                passos: { passos: [] },
                 estaCarregando: false,
                 erro: null,
 
@@ -45,7 +45,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                         if (!equacaoDigitada.trim()) throw new Error('Por favor, insira uma equação para resolver.');
                         //reseta campos de processamento e ativa a animacao de carregamento
                         definir(
-                            { estaCarregando: true, erro: null, passos: { passosResolucao: [] } },
+                            { estaCarregando: true, erro: null, passos: { passos: [] } },
                             false,
                             'matematicaEstado/resetandoProcessamento'
                         );
@@ -60,7 +60,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                         );
                         //salva os passos retornados pela API no nosso estado global
                         definir(
-                            { passos: { passosResolucao: dados.passosResolucao }, estaCarregando: false },
+                            { passos: { passos: dados.passos }, estaCarregando: false },
                             false,
                             'matematicaEstado/salvarPassos'
                         );
@@ -80,7 +80,7 @@ export const useEstadoMatematica = create<EstadoMatematica>()(
                 limparArmazenamento: () =>
                     definir({ 
                             equacaoDigitada: '', 
-                            passos: { passosResolucao: [] }, 
+                            passos: { passos: [] }, 
                             erro: null, 
                             estaCarregando: false 
                         },

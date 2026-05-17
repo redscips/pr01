@@ -38,7 +38,7 @@ export default function Inicial() {
       </E.SecaoInput>
 
       <div style={{ width: '100%' }} className="visu">
-        {passos.passosResolucao?.map((passo, index) => (
+        {passos.passos?.map((passo, index) => (
           <E.CardPasso key={index} className="visu">
             <h3 style={{ color: 'var(--cores-primaria)', marginBottom: '0.5rem' }}>
               Passo {index + 1}
