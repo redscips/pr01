@@ -6,7 +6,7 @@ export interface UsuarioLogin {
   senha: string
 }
 
-interface LoginEstado {
+export interface LoginEstado {
   usuario : UsuarioLogin
   logado: boolean
 
