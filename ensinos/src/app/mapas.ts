@@ -7,9 +7,9 @@ export const cores = {
   branco: '#ffffff',
   preto: '#000000',
   cinza_claro: '#f5f5f5',
-  cinza_medio: '#94a3b8', // Adicionado
+  cinza_medio: '#94a3b8',
   cinza_escuro: '#1e293b', 
-  primaria: '#6366f1',    // Indigo moderno
+  primaria: '#6366f1',
   sucesso: '#10b981', 
   erro: '#ef4444',
 }
@@ -20,8 +20,6 @@ export const tamanhos = {
   grande: '1.25rem',
   titulo: '2.5rem',
 }
-
-// ... (suas funções UnificaMapas, InjetaMapasCSS e RetornaValorMapa permanecem as mesmas)
 
 //funcoes
 function UnificaMapas() {

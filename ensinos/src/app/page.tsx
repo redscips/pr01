@@ -4,13 +4,16 @@ import * as E from "./estilos_globais";
 import { useEstadoMatematica } from "./armazens/matematica";
 
 export default function Inicial() {
+
+  //acesso ao estado global da matematica
   const { 
     equacaoDigitada, 
-    definirEquacao, 
-    resolverEquacao, 
     passos, 
     estaCarregando, 
-    erro 
+    erro,
+    //funcoes p/ atualizar o estado
+    resolverEquacao, 
+    definirEquacao, 
   } = useEstadoMatematica();
 
   return (
