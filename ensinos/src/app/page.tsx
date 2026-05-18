@@ -2,7 +2,7 @@
 
 import * as E from "./estilos_globais";
 import { useEstadoMatematica } from "./armazens/matematica";
-import { Flutuar } from "./animacoes/flutuar";
+import { Deslocar, AnimacaoProps } from "./animacoes/deslocar";
 import { Piscar } from "./animacoes/piscar";
 
 export default function Inicial() {
@@ -18,12 +18,23 @@ export default function Inicial() {
     definirEquacao, 
   } = useEstadoMatematica();
 
+  //cria as animcaoes p/ o titulo
+  const animacaoTitulo: AnimacaoProps = {
+    y: [0, -10, 0], //vai subir 10px e voltar
+    transition: {
+      duration: 3,
+      repeat: Infinity, // Loop infinito
+      ease: 'easeInOut',
+      delay: 0.5
+    },
+  };  
+
   return (
     <E.Container className="visu">
       <E.Cabecalho className="w-full">
-        <Flutuar distancia={3} duracao={3} tipo="easeInOut" atraso={0.5}>
+        <Deslocar pairar={animacaoTitulo}>
           <E.Titulo className="">Resoluções Matemáticas</E.Titulo>
-        </Flutuar>
+        </Deslocar>
         <Piscar duracao={2} tipo="easeInOut">
           <p>texto2</p>
         </Piscar>
