@@ -20,7 +20,7 @@ export default function Inicial() {
 
   //cria as animcaoes p/ o titulo
   const animacaoTitulo: AnimacaoProps = {
-    y: [0, -10, 0], //vai subir 10px e voltar
+    y: [0, -5, 0], //vai subir 10px e voltar
     transition: {
       duration: 3,
       repeat: Infinity, // Loop infinito
