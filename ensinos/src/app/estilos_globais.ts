@@ -37,7 +37,7 @@ export const Titulo = styled.h1`
     padding: 8px;
     margin: 8px;
 
-    /*ajuda a evitar que o texto fique 'embaçado' durante a animacao */
+    /*ajuda a evitar que o texto fique 'embacado' durante a animacao */
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
 `
