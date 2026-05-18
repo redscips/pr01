@@ -17,7 +17,11 @@ export const Piscar = ({
     
   return (
     <motion.div
-        style={{ willChange: "transform", backfaceVisibility: "hidden", WebkitFontSmoothing: "antialiased" }} //ajuda a evitar que o texto fique 'embacado' durante a animacao
+        style={{
+          willChange: "transform",
+          backfaceVisibility: "hidden",   //ajuda a evitar que o texto fique 'embacado' durante a animacao
+          WebkitFontSmoothing: "antialiased"
+        }}
         animate={{
             opacity: [1, 0.5, 1],   //vai de opacidade 1 para 0.5 e volta para 1
         }} 

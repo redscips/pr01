@@ -19,7 +19,11 @@ export const Flutuar = ({
     
   return (
     <motion.div
-      style={{ willChange: "transform", backfaceVisibility: "hidden", WebkitFontSmoothing: "antialiased" }} //ajuda a evitar que o texto fique 'embacado' durante a animacao
+      style={{
+        willChange: "transform",
+        backfaceVisibility: "hidden",   //ajuda a evitar que o texto fique 'embacado' durante a animacao
+        WebkitFontSmoothing: "antialiased" 
+      }}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       whileHover={{
