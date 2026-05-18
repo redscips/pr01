@@ -4,20 +4,23 @@ export const fontes = {
 }
 
 export const cores = {
-  branco: '#ffffff',
-  preto: '#000000',
+  branco: '#FFFFFF',
+  preto: '#1b1b1b',
   cinza_claro: '#f5f5f5',
   cinza_medio: '#94a3b8',
   cinza_escuro: '#3d3d3d', 
   primaria: '#b98954',
   sucesso: '#10b981', 
   erro: '#ef4444',
+  azul: '#2C7E8C',
+  azul_escuro: '#0F2443'
 }
 
 export const tamanhos = {
   pequeno: '0.875rem',
   medio: '1rem',
   grande: '1.25rem',
+  extra_grande: '2rem', 
   titulo: '2.5rem',
 }
 

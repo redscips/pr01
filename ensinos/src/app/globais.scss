@@ -11,14 +11,14 @@ body {
     font-family: var(--fontes-roboto);
     font-size: var(--tamanhos-titulo);
     // cor
-    color: var(--cores-cinza_claro);
-    background-color: var(--cores-cinza_escuro);
+    color: var(--cores-preto);
+    background-color: var(--cores-branco);
 }
 
 //classes
 //usada como auxiliar de desenvolvimento, p/ visualizar os limites dos elementos
 .visu {
-    border: 1px dashed var(--cores-branco);
+    border: 1px dashed var(--cores-preto);
 }
 
 //mixins: animacoes

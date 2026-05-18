@@ -3,7 +3,8 @@
 import * as E from "./estilos_globais";
 import { useEstadoMatematica } from "./armazens/matematica";
 import { Deslocar, AnimacaoProps } from "./animacoes/deslocar";
-import { Piscar } from "./animacoes/piscar";
+import Image from "next/image";
+import grafico from "./ativos/imagens/grafico.jpg"
 
 export default function Inicial() {
 
@@ -19,8 +20,8 @@ export default function Inicial() {
   } = useEstadoMatematica();
 
   //cria as animcaoes p/ o titulo
-  const animacaoTitulo: AnimacaoProps = {
-    y: [0, -5, 0], //vai subir 10px e voltar
+  const animacaoBotao: AnimacaoProps = {
+    y: [0, -3, 0], //vai subir 10px e voltar
     transition: {
       duration: 3,
       repeat: Infinity, // Loop infinito
@@ -30,14 +31,13 @@ export default function Inicial() {
   };  
 
   return (
-    <E.Container className="visu">
-      <E.Cabecalho className="w-full">
-        <Deslocar pairar={animacaoTitulo}>
-          <E.Titulo className="">Resoluções Matemáticas</E.Titulo>
-        </Deslocar>
-        <Piscar duracao={2} tipo="easeInOut">
-          <p>texto2</p>
-        </Piscar>
+    <E.Container className="">
+      <E.Cabecalho className="w-full visu">
+        <div className="flex">
+          <Image src={grafico} alt="Grafico matemático" width={100} height={100} />
+          <E.Titulo className="visu">RESOLUÇÕES</E.Titulo>
+          <E.Subtitulo className="visu">MATEMÁTICAS</E.Subtitulo>
+        </div>
       </E.Cabecalho>
       <main>
         <E.Formulario
@@ -53,12 +53,14 @@ export default function Inicial() {
             placeholder="Digite uma equação para resolver"
             className="w-full p-2 border border-gray-300 rounded mb-4"
           />
-          <button
-            type="submit"
-            className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
-          >
-            Resolver
-          </button>
+          <Deslocar pairar={animacaoBotao}>
+            <button
+              type="submit"
+              className="w-full bg-primary py-2 rounded hover:bg-primary-dark transition-colors"
+              >
+              Resolver
+            </button>
+          </Deslocar>
         </E.Formulario>
 
         {estaCarregando && <p className="mt-4 text-center">Resolvendo...</p>}

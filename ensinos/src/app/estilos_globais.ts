@@ -1,6 +1,6 @@
 'use client';
-import { createGlobalStyle, styled } from 'styled-components';
-import { InjetaMapasCSS, RetornaValorMapa, cores } from './mapas';
+import { createGlobalStyle, styled, css } from 'styled-components';
+import { InjetaMapasCSS, RetornaValorMapa, cores, tamanhos } from './mapas';
 import { lighten, darken } from "polished";
 
 //globais
@@ -8,6 +8,13 @@ export default createGlobalStyle`
     :root {
         ${InjetaMapasCSS()}
     }
+`
+
+//mixins
+const Centraliza = (direcao: string = 'row') => css`
+    display: flex;
+    flex-direction: ${direcao};
+    justify-content: center;
 `
 
 //tags
@@ -19,28 +26,37 @@ export const Container = styled.div`
 export const Cabecalho = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
-    padding: 8px;
+    padding: 16px 40px;
 
-    background-color: ${RetornaValorMapa(cores, 'primaria')};
+    img {
+        border-radius: 30%;
+        box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+    }
 `
 
 export const Titulo = styled.h1`
-    color: ${RetornaValorMapa(cores, 'branco')};
-    background-color: ${darken(0.2, `${RetornaValorMapa(cores, 'primaria')}`)};
-    font-size: var(--tamanhos-titulo);
+    //usa mixin
+    ${Centraliza('column')}
 
-    text-align: center;
+    font-size: ${RetornaValorMapa(tamanhos, "extra_grande")};
+    font-weight: bold;
+    margin-left: 12px;
 
-    border-radius: 16px;
-    padding: 8px;
-    margin: 8px;
+    color: ${RetornaValorMapa(cores, "azul")};
+`
+
+export const Subtitulo = styled.h3`
+    ${Centraliza('column')}
+    
+    font-size: ${RetornaValorMapa(tamanhos, "extra_grande")};
+    font-weight: bold;
+    margin-left: 12px;
+
+    color: ${RetornaValorMapa(cores, "azul_escuro")};
 `
 
 export const Formulario = styled.form`
-    display: flex;
-    flex-direction: column;
-
-    margin: 32px 8px;
-`
+    
+`;
