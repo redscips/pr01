@@ -20,6 +20,7 @@ export const Flutuar = ({
   return (
     <motion.div
       style={{
+        display: 'inline-block',    //garante que o efeito afete apenas o conteudo e nao o layout
         willChange: "transform",
         backfaceVisibility: "hidden",   //ajuda a evitar que o texto fique 'embacado' durante a animacao
         WebkitFontSmoothing: "antialiased" 
