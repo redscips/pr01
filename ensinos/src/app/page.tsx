@@ -35,8 +35,8 @@ export default function Inicial() {
       <E.Cabecalho className="w-full visu">
         <div className="flex">
           <Image src={grafico} alt="Grafico matemático" width={100} height={100} />
-          <E.Titulo className="visu">RESOLUÇÕES</E.Titulo>
-          <E.Subtitulo className="visu">MATEMÁTICAS</E.Subtitulo>
+          <E.Titulo className="">RESOLUÇÕES</E.Titulo>
+          <E.Subtitulo className="">MATEMÁTICAS</E.Subtitulo>
         </div>
       </E.Cabecalho>
       <main>

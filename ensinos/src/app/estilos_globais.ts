@@ -33,26 +33,32 @@ export const Cabecalho = styled.header`
     img {
         border-radius: 30%;
         box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.3);
+
+        border: 1px solid rgba(0, 0, 0, 0.5);
     }
 `
 
 export const Titulo = styled.h1`
-    //usa mixin
-    ${Centraliza('column')}
-
     font-size: ${RetornaValorMapa(tamanhos, "extra_grande")};
     font-weight: bold;
     margin-left: 12px;
+
+    padding-top: 16px;
+
+    border-bottom: 1px dashed ${RetornaValorMapa(cores, "azul")};
 
     color: ${RetornaValorMapa(cores, "azul")};
 `
 
 export const Subtitulo = styled.h3`
+    //usa mixin
     ${Centraliza('column')}
     
-    font-size: ${RetornaValorMapa(tamanhos, "extra_grande")};
+    font-size: ${RetornaValorMapa(tamanhos, "titulo")};
     font-weight: bold;
     margin-left: 12px;
+
+    border-bottom: 1px dotted ${RetornaValorMapa(cores, "azul_escuro")};
 
     color: ${RetornaValorMapa(cores, "azul_escuro")};
 `
