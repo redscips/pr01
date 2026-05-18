@@ -8,8 +8,8 @@ export const cores = {
   preto: '#000000',
   cinza_claro: '#f5f5f5',
   cinza_medio: '#94a3b8',
-  cinza_escuro: '#1e293b', 
-  primaria: '#6366f1',
+  cinza_escuro: '#3d3d3d', 
+  primaria: '#b98954',
   sucesso: '#10b981', 
   erro: '#ef4444',
 }

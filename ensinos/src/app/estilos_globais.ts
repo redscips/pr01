@@ -1,76 +1,46 @@
 'use client';
 import { createGlobalStyle, styled } from 'styled-components';
 import { InjetaMapasCSS, RetornaValorMapa, cores } from './mapas';
+import { lighten, darken } from "polished";
 
+//globais
 export default createGlobalStyle`
     :root {
         ${InjetaMapasCSS()}
     }
 `
 
+//tags
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+`
+
+export const Cabecalho = styled.header`
+    display: flex;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+    justify-content: space-evenly;
+
+    padding: 8px;
+
+    background-color: ${RetornaValorMapa(cores, 'primaria')};
 `
 
 export const Titulo = styled.h1`
-    color: ${RetornaValorMapa(cores, 'primaria')};
-    text-align: center;
+    color: ${RetornaValorMapa(cores, 'branco')};
+    background-color: ${darken(0.2, `${RetornaValorMapa(cores, 'primaria')}`)};
     font-size: var(--tamanhos-titulo);
+
+    text-align: center;
+
+    border-radius: 16px;
+    padding: 8px;
+    margin: 8px;
 `
 
-// Novos componentes seguindo sua hierarquia
-export const SecaoInput = styled.section`
-    width: 100%;
-    background-color: ${RetornaValorMapa(cores, 'branco')};
-    padding: 2rem;
-    border-radius: 12px;
+export const Formulario = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    color: ${RetornaValorMapa(cores, 'cinza_escuro')};
-`
 
-export const EntradaDados = styled.input`
-    padding: 1rem;
-    border: 2px solid var(--cores-cinza_claro);
-    border-radius: 8px;
-    font-size: var(--tamanhos-grande);
-    font-family: var(--fontes-roboto);
-    
-    &:focus {
-        outline: none;
-        border-color: var(--cores-primaria);
-    }
-`
-
-export const BotaoAcao = styled.button`
-    background-color: var(--cores-primaria);
-    color: var(--cores-branco);
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: var(--tamanhos-medio);
-
-    &:disabled {
-        background-color: var(--cores-cinza_medio);
-        cursor: not-allowed;
-    }
-`
-
-export const CardPasso = styled.div`
-    width: 100%;
-    background-color: var(--cores-branco);
-    color: var(--cores-cinza_escuro);
-    padding: 1.5rem;
-    border-left: 6px solid var(--cores-primaria);
-    border-radius: 4px 12px 12px 4px;
-    margin-bottom: 1rem;
+    margin: 32px 8px;
 `

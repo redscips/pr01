@@ -2,6 +2,8 @@
 
 import * as E from "./estilos_globais";
 import { useEstadoMatematica } from "./armazens/matematica";
+import { Flutuar } from "./animacoes/flutuar";
+import { Piscar } from "./animacoes/piscar";
 
 export default function Inicial() {
 
@@ -18,36 +20,50 @@ export default function Inicial() {
 
   return (
     <E.Container className="visu">
-      <E.Titulo className="visu">Mestre da Matemática IA</E.Titulo>
-      
-      <E.SecaoInput className="visu">
-        <label>Qual desafio vamos resolver hoje?</label>
-        <E.EntradaDados 
-          className="visu"
-          placeholder="Ex: 2x + 5 = 15"
-          value={equacaoDigitada}
-          onChange={(e) => definirEquacao(e.target.value)}
-        />
-        
-        <E.BotaoAcao 
-          className="visu"
-          onClick={() => resolverEquacao()}
-          disabled={estaCarregando}
+      <E.Cabecalho className="w-full">
+        <Flutuar distancia={5} duracao={2.5} tipo="easeInOut" atraso={0.5}>
+          <E.Titulo className="">Resoluções Matemáticas</E.Titulo>
+        </Flutuar>
+        <Piscar duracao={2} tipo="easeInOut">
+          <p>texto2</p>
+        </Piscar>
+      </E.Cabecalho>
+      <main>
+        <E.Formulario
+          onSubmit={(e) => {
+            e.preventDefault();
+            resolverEquacao();
+          }}
         >
-          {estaCarregando ? "Pensando..." : "Resolver Passo a Passo"}
-        </E.BotaoAcao>
+          <input
+            type="text"
+            value={equacaoDigitada}
+            onChange={(e) => definirEquacao(e.target.value)}
+            placeholder="Digite uma equação para resolver"
+            className="w-full p-2 border border-gray-300 rounded mb-4"
+          />
+          <button
+            type="submit"
+            className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition-colors"
+          >
+            Resolver
+          </button>
+        </E.Formulario>
 
-        {erro && <p>{erro}</p>}
-      </E.SecaoInput>
+        {estaCarregando && <p className="mt-4 text-center">Resolvendo...</p>}
+        {erro && <p className="mt-4 text-center text-red-500">{erro}</p>}
 
-      <div className="visu">
-        {passos.passos?.map((passo, index) => (
-          <E.CardPasso key={index} className="visu">
-            <h3>Passo {index + 1}</h3>
-            <p>{passo}</p>
-          </E.CardPasso>
-        ))}
-      </div>
+        {!estaCarregando && !erro && passos.passos.length > 0 && (
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold mb-2">Passo a Passo:</h2>
+            <ol className="list-decimal list-inside">
+              {passos.passos.map((passo, index) => (
+                <li key={index} className="mb-1">{passo}</li>
+              ))}
+            </ol>
+          </div>
+        )}
+      </main>
     </E.Container>
   );
 }

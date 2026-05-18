@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { evaluate, simplify } from 'mathjs';
+import { simplify } from 'mathjs';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 //instancia do Gemini
