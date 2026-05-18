@@ -36,6 +36,10 @@ export const Titulo = styled.h1`
     border-radius: 16px;
     padding: 8px;
     margin: 8px;
+
+    /*ajuda a evitar que o texto fique 'embaçado' durante a animacao */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 `
 
 export const Formulario = styled.form`

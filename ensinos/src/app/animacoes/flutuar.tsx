@@ -19,15 +19,15 @@ export const Flutuar = ({
     
   return (
     <motion.div
+      style={{ willChange: "transform", display: "inline-block" }}
       whileHover={{
-        y: [0, -distancia, 0]       //vai de 0 para -distancia e volta para 0
+        y: [0, -distancia, 0]      //vai de 0 para -distancia e volta para 0
       }} 
       transition={{
         duration: duracao,
         repeat: Infinity,      // Loop infinito
         ease: tipo,     // Movimento suave
-        delay: atraso,
-        type: 'keyframes',   // Tipo de animacao
+        delay: atraso
       }}
     >
       {children}

@@ -21,7 +21,7 @@ export default function Inicial() {
   return (
     <E.Container className="visu">
       <E.Cabecalho className="w-full">
-        <Flutuar distancia={5} duracao={2.5} tipo="easeInOut" atraso={0.5}>
+        <Flutuar distancia={3} duracao={4} tipo="easeInOut" atraso={0.5}>
           <E.Titulo className="">Resoluções Matemáticas</E.Titulo>
         </Flutuar>
         <Piscar duracao={2} tipo="easeInOut">
