@@ -17,15 +17,16 @@ export const Piscar = ({
     
   return (
     <motion.div
-      animate={{
-        opacity: [1, 0.5, 1],   //vai de opacidade 1 para 0.5 e volta para 1
-      }} 
-      transition={{
-        duration: duracao,
-        repeat: Infinity,      // Loop infinito
-        ease: tipo,     // Movimento suave
-        delay: atraso,
-      }}
+        style={{ willChange: "transform", backfaceVisibility: "hidden", WebkitFontSmoothing: "antialiased" }} //ajuda a evitar que o texto fique 'embacado' durante a animacao
+        animate={{
+            opacity: [1, 0.5, 1],   //vai de opacidade 1 para 0.5 e volta para 1
+        }} 
+        transition={{
+            duration: duracao,
+            repeat: Infinity,      // Loop infinito
+            ease: tipo,     // Movimento suave
+            delay: atraso,
+        }}
     >
       {children}
     </motion.div>
