@@ -20,14 +20,20 @@ export const Flutuar = ({
   return (
     <motion.div
       style={{ willChange: "transform", backfaceVisibility: "hidden", WebkitFontSmoothing: "antialiased" }} //ajuda a evitar que o texto fique 'embacado' durante a animacao
+      initial={{ y: 0 }}
+      animate={{ y: 0 }}
       whileHover={{
-        y: [0, -distancia, 0]      //vai de 0 para -distancia e volta para 0
+        y: [0, -distancia, 0],      //vai de 0 para -distancia e volta para 0
+        transition: {
+          duration: duracao,
+          repeat: Infinity,      // Loop infinito
+          ease: tipo,     // Movimento suave
+          delay: atraso,
+        }
       }} 
       transition={{
-        duration: duracao,
-        repeat: Infinity,      // Loop infinito
-        ease: tipo,     // Movimento suave
-        delay: atraso
+        duration: 0.3,
+        ease: 'easeOut'
       }}
     >
       {children}
